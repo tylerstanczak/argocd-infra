@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: node-app
+    version: v1
+  name: node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: node-app
+        version: v1
+    spec:
+      containers:
+      - name: node-app
+        image: image-registry.openshift-image-registry.svc:5000/dev-ot/node-app:c84bd10
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
